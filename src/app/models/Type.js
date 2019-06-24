@@ -18,6 +18,10 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'type_id',
       as: 'type'
     })
+
+    Type.hasMany(models.Image, {
+      foreignKey: 'type_id'
+    })
   }
   return Type
 }
