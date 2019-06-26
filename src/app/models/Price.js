@@ -4,17 +4,19 @@ module.exports = (sequelize, DataTypes) => {
     {
       type_id: DataTypes.INTEGER,
       size_id: DataTypes.INTEGER,
-      price: DataTypes.STRING
+      price: DataTypes.FLOAT
     },
     {}
   )
   Price.associate = function (models) {
     // associations can be defined here
-    Price.hasMany(models.Size, {
-      foreignKey: 'size_id'
+    Price.belongsTo(models.Size, {
+      foreignKey: 'size_id',
+      constraints: false
     })
-    Price.hasMany(models.Type, {
-      foreignKey: 'type_id'
+    Price.belongsTo(models.Type, {
+      foreignKey: 'type_id',
+      constraints: false
     })
   }
   return Price

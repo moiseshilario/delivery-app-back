@@ -14,7 +14,9 @@ module.exports = {
         references: {
           model: 'types',
           key: 'id'
-        }
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       file: {
         allowNull: false,

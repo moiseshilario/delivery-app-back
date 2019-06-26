@@ -7,17 +7,17 @@ module.exports = {
       'products',
       [
         {
-          product_name: 'pizza',
+          name: 'pizza',
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          product_name: 'bebida',
+          name: 'bebida',
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          product_name: 'massa',
+          name: 'massa',
           created_at: new Date(),
           updated_at: new Date()
         }
@@ -25,36 +25,32 @@ module.exports = {
       {}
     )
 
-    const product = await Product.findOne({
-      where: {
-        product_name: 'pizza'
-      }
-    })
+    const product = await Product.findOne({ where: { name: 'pizza' } })
 
     return queryInterface.bulkInsert(
       'types',
       [
         {
           product_id: product.id,
-          type_name: 'Calabresa',
+          name: 'Calabresa',
           created_at: new Date(),
           updated_at: new Date()
         },
         {
           product_id: product.id,
-          type_name: '4 quejos',
+          name: '4 quejos',
           created_at: new Date(),
           updated_at: new Date()
         },
         {
           product_id: product.id,
-          type_name: 'Merguerita',
+          name: 'Merguerita',
           created_at: new Date(),
           updated_at: new Date()
         },
         {
           product_id: product.id,
-          type_name: 'Portuguesa',
+          name: 'Portuguesa',
           created_at: new Date(),
           updated_at: new Date()
         }

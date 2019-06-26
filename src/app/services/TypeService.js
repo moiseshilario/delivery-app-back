@@ -3,9 +3,9 @@ const { AlreadyExistsError } = require('../errors/AlreadyExistsError')
 
 class TypeService {
   async create (data) {
-    const { type_name: type } = data
+    const { name } = data
 
-    if (await Type.findOne({ where: { type_name: type } })) {
+    if (await Type.findOne({ where: { name } })) {
       throw new AlreadyExistsError('Type')
     }
 

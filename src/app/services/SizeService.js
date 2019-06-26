@@ -3,9 +3,9 @@ const AlreadyExistsError = require('../errors/AlreadyExistsError')
 
 class SizeService {
   async create (data) {
-    const { size_desc: size } = data
+    const { description } = data
 
-    if (await Size.findOne({ where: { size_desc: size } })) {
+    if (await Size.findOne({ where: { description } })) {
       throw new AlreadyExistsError('Size')
     }
 

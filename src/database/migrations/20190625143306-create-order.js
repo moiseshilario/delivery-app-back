@@ -1,6 +1,7 @@
+'use strict'
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('prices', {
+    return queryInterface.createTable('orders', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -10,26 +11,34 @@ module.exports = {
       type_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        references: {
+        reference: {
           model: 'types',
           key: 'id'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },
-      size_id: {
+      user_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        references: {
-          model: 'sizes',
+        reference: {
+          model: 'users',
           key: 'id'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },
-      price: {
-        allowNull: false,
-        type: Sequelize.FLOAT
+      street: {
+        type: Sequelize.STRING
+      },
+      district: {
+        type: Sequelize.STRING
+      },
+      number: {
+        type: Sequelize.STRING
+      },
+      observation: {
+        type: Sequelize.STRING
       },
       created_at: {
         allowNull: false,
@@ -42,6 +51,6 @@ module.exports = {
     })
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('prices')
+    return queryInterface.dropTable('orders')
   }
 }

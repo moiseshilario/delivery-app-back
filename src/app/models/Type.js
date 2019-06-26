@@ -2,7 +2,7 @@ module.exports = (sequelize, DataTypes) => {
   const Type = sequelize.define(
     'Type',
     {
-      type_name: DataTypes.STRING,
+      name: DataTypes.STRING,
       product_id: DataTypes.INTEGER
     },
     {}
@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     Type.belongsToMany(models.Size, {
       through: models.Price,
       foreignKey: 'type_id',
-      as: 'type'
+      constraints: false
     })
 
     Type.hasMany(models.Image, {

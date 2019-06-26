@@ -3,9 +3,9 @@ const AlreadyExistsError = require('../errors/AlreadyExistsError')
 
 class ProductService {
   async create (data) {
-    const { product_name: product } = data
+    const { name } = data
 
-    if (await Product.findOne({ where: { product_name: product } })) {
+    if (await Product.findOne({ where: { name } })) {
       throw new AlreadyExistsError('Product')
     }
 

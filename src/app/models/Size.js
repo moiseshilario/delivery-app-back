@@ -2,7 +2,7 @@ module.exports = (sequelize, DataTypes) => {
   const Size = sequelize.define(
     'Size',
     {
-      size_desc: DataTypes.STRING
+      description: DataTypes.STRING
     },
     {}
   )
@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     Size.belongsToMany(models.Type, {
       through: models.Price,
       foreignKey: 'size_id',
-      as: 'size'
+      constraints: false
     })
   }
   return Size
