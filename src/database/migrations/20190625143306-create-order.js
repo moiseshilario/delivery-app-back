@@ -8,25 +8,18 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      type_id: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        reference: {
-          model: 'types',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
-      },
       user_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        reference: {
+        references: {
           model: 'users',
           key: 'id'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
+      },
+      cep: {
+        type: Sequelize.STRING
       },
       street: {
         type: Sequelize.STRING

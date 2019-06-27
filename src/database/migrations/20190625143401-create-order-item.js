@@ -11,17 +11,14 @@ module.exports = {
       order_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        reference: {
-          model: 'orders',
-          key: 'id'
-        },
+        references: { model: 'orders', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },
       price_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        reference: {
+        references: {
           model: 'prices',
           key: 'id'
         },
@@ -32,11 +29,11 @@ module.exports = {
         allowNull: false,
         type: Sequelize.FLOAT
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       }
