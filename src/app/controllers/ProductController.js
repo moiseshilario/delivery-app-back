@@ -1,9 +1,23 @@
-const { Product } = require('../models')
+const { Product, Type, Image } = require('../models')
 const ProductService = require('../services/ProductService')
 
 class ProductController {
   async index (req, res) {
     const types = await Product.findAll()
+
+    return res.json(types)
+  }
+
+  async show (req, res) {
+    const types = await Type.findAll({
+      where: { product_id: req.params.id },
+      include: {
+        model: Image,
+        as: 'images',
+        attributes: ['file', 'ratio']
+      },
+      attributes: ['id', 'name']
+    })
 
     return res.json(types)
   }

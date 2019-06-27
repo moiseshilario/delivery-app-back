@@ -1,4 +1,4 @@
-const { Type } = require('../models')
+const { Type, Price, Size } = require('../models')
 const TypeService = require('../services/TypeService')
 
 class TypeController {
@@ -6,6 +6,26 @@ class TypeController {
     const types = await Type.findAll()
 
     return res.json(types)
+  }
+
+  async show (req, res) {
+    const type = await Type.findOne({
+      where: { id: req.params.id },
+      attributes: ['id', 'name']
+    })
+    const prices = await Price.findAll({
+      where: { type_id: req.params.id },
+      include: [
+        {
+          model: Size,
+          attributes: ['id', 'description'],
+          as: 'size'
+        }
+      ],
+      attributes: ['id', 'price']
+    })
+
+    return res.json({ type, prices })
   }
 
   async store (req, res) {
