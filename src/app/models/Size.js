@@ -10,8 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     Size.belongsToMany(models.Type, {
       through: models.Price,
-      foreignKey: 'size_id',
-      constraints: false
+      foreignKey: 'size_id'
     })
   }
   return Size

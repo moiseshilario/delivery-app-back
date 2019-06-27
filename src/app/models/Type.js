@@ -15,12 +15,12 @@ module.exports = (sequelize, DataTypes) => {
 
     Type.belongsToMany(models.Size, {
       through: models.Price,
-      foreignKey: 'type_id',
-      constraints: false
+      foreignKey: 'type_id'
     })
 
     Type.hasMany(models.Image, {
-      foreignKey: 'type_id'
+      foreignKey: 'type_id',
+      as: 'images'
     })
   }
   return Type

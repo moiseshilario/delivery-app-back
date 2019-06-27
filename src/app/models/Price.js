@@ -12,11 +12,11 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     Price.belongsTo(models.Size, {
       foreignKey: 'size_id',
-      constraints: false
+      as: 'size'
     })
     Price.belongsTo(models.Type, {
       foreignKey: 'type_id',
-      constraints: false
+      as: 'type'
     })
   }
   return Price
