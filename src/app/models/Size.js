@@ -2,7 +2,8 @@ module.exports = (sequelize, DataTypes) => {
   const Size = sequelize.define(
     'Size',
     {
-      description: DataTypes.STRING
+      description: DataTypes.STRING,
+      image: DataTypes.STRING
     },
     {}
   )

@@ -9,7 +9,15 @@ module.exports = {
         }),
         queryInterface.addColumn('products', 'description', Sequelize.STRING, {
           transaction: t
-        })
+        }),
+        queryInterface.addColumn(
+          'products',
+          'preparation_time',
+          Sequelize.INTEGER,
+          {
+            transaction: t
+          }
+        )
       ])
     })
   },
@@ -24,6 +32,14 @@ module.exports = {
           'products',
           'description',
           Sequelize.STRING,
+          {
+            transaction: t
+          }
+        ),
+        queryInterface.removeColumn(
+          'products',
+          'preparation_time',
+          Sequelize.INTEGER,
           {
             transaction: t
           }

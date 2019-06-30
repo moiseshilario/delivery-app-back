@@ -7,21 +7,31 @@ module.exports = {
       [
         {
           description: 'pequena',
+          image: 'pizza-pequena.png',
           created_at: new Date(),
           updated_at: new Date()
         },
         {
           description: 'media',
+          image: 'pizza-media.png',
           created_at: new Date(),
           updated_at: new Date()
         },
         {
           description: 'grande',
+          image: 'pizza-grande.png',
           created_at: new Date(),
           updated_at: new Date()
         },
         {
           description: 'gigante',
+          image: 'pizza-gigante.png',
+          created_at: new Date(),
+          updated_at: new Date()
+        },
+        {
+          description: 'lata 300ml',
+          image: 'coca-cola-lata.png',
           created_at: new Date(),
           updated_at: new Date()
         }

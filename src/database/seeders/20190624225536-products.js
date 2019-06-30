@@ -7,17 +7,45 @@ module.exports = {
       'products',
       [
         {
-          name: 'pizza',
+          name: 'Pizzas',
+          description:
+            'Mais de 50 sabores de pizza em até 4 tamanhos diferentes de fome.',
+          preparation_time: 30,
+          image: 'pizzas.png',
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          name: 'bebida',
+          name: 'Massas',
+          description:
+            'Mais de 50 sabores de pizza em até 4 tamanhos diferentes de fome.',
+          preparation_time: 25,
+          image: 'massas.png',
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          name: 'massa',
+          name: 'Calzones',
+          description:
+            'Calzones super recheados com mais de 50 sabores diferentes.',
+          preparation_time: 15,
+          image: 'calzones.png',
+          created_at: new Date(),
+          updated_at: new Date()
+        },
+        {
+          name: 'Bebidas não-alcóolicas',
+          description: 'Refrigerantes, sucos, chá gelado, energéticos e água.',
+          preparation_time: 5,
+          image: 'bebidas-nao-alcoolicas.png',
+          created_at: new Date(),
+          updated_at: new Date()
+        },
+        {
+          name: 'Bebidas alcóolicas',
+          description: 'Cervejas artesanais, vinhos e destilados.',
+          preparation_time: 5,
+          image: 'bebidas-alcoolicas.png',
           created_at: new Date(),
           updated_at: new Date()
         }
@@ -25,32 +53,59 @@ module.exports = {
       {}
     )
 
-    const product = await Product.findOne({ where: { name: 'pizza' } })
+    const pizza = await Product.findOne({ where: { name: 'Pizzas' } })
+    const bebida = await Product.findOne({
+      where: { name: 'Bebidas não-alcóolicas' }
+    })
 
     return queryInterface.bulkInsert(
       'types',
       [
         {
-          product_id: product.id,
+          product_id: pizza.id,
           name: 'Calabresa',
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          product_id: product.id,
-          name: '4 quejos',
+          product_id: pizza.id,
+          name: 'Frango Frito',
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          product_id: product.id,
-          name: 'Merguerita',
+          product_id: pizza.id,
+          name: 'Marguerita',
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          product_id: product.id,
+          product_id: pizza.id,
+          name: 'Palmito',
+          created_at: new Date(),
+          updated_at: new Date()
+        },
+        {
+          product_id: pizza.id,
           name: 'Portuguesa',
+          created_at: new Date(),
+          updated_at: new Date()
+        },
+        {
+          product_id: pizza.id,
+          name: 'Vegetariana',
+          created_at: new Date(),
+          updated_at: new Date()
+        },
+        {
+          product_id: bebida.id,
+          name: 'Coca-Cola',
+          created_at: new Date(),
+          updated_at: new Date()
+        },
+        {
+          product_id: bebida.id,
+          name: 'Fanta',
           created_at: new Date(),
           updated_at: new Date()
         }

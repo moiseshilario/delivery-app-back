@@ -3,40 +3,62 @@ const { Type, Size } = require('../../app/models')
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    const size1 = await Size.findOne({ where: { description: 'pequena' } })
-    const type1 = await Type.findOne({ where: { name: 'Calabresa' } })
-    const size2 = await Size.findOne({ where: { description: 'media' } })
-    const size3 = await Size.findOne({ where: { description: 'grande' } })
-    const size4 = await Size.findOne({ where: { description: 'gigante' } })
+    const pizzaTypes = [
+      'Calabresa',
+      'Frango Frito',
+      'Marguerita',
+      'Palmito',
+      'Portuguesa',
+      'Vegetariana'
+    ]
+
+    const pizzaSizes = [
+      { description: 'pequena', basePrice: 10.5 },
+      { description: 'media', basePrice: 20.9 },
+      { description: 'grande', basePrice: 30.5 },
+      { description: 'gigante', basePrice: 40.9 }
+    ]
+
+    const buildPriceData = pizzaSize => {
+      return Promise.all(
+        pizzaTypes.map(async pizzaType => {
+          const type = await Type.findOne({ where: { name: pizzaType } })
+          const size = await Size.findOne({
+            where: { description: pizzaSize.description }
+          })
+
+          return {
+            type_id: type.id,
+            size_id: size.id,
+            price: pizzaSize.basePrice + Math.floor(Math.random() * 9.0 + 1),
+            created_at: new Date(),
+            updated_at: new Date()
+          }
+        })
+      )
+    }
+
+    const smallPizzaPrices = await buildPriceData(pizzaSizes[0])
+    const mediumPizzaPrices = await buildPriceData(pizzaSizes[1])
+    const largePizzaPrices = await buildPriceData(pizzaSizes[2])
+    const xlargePizzaPrices = await buildPriceData(pizzaSizes[3])
+
+    const drink = await Type.findOne({ where: { name: 'Coca-Cola' } })
+    const drinkSize = await Size.findOne({
+      where: { description: 'lata 300ml' }
+    })
 
     return queryInterface.bulkInsert(
       'prices',
       [
+        ...smallPizzaPrices,
+        ...mediumPizzaPrices,
+        ...largePizzaPrices,
+        ...xlargePizzaPrices,
         {
-          price: 14.9,
-          type_id: type1.id,
-          size_id: size1.id,
-          created_at: new Date(),
-          updated_at: new Date()
-        },
-        {
-          price: 22.9,
-          type_id: type1.id,
-          size_id: size2.id,
-          created_at: new Date(),
-          updated_at: new Date()
-        },
-        {
-          price: 35.9,
-          type_id: type1.id,
-          size_id: size3.id,
-          created_at: new Date(),
-          updated_at: new Date()
-        },
-        {
-          price: 40.9,
-          type_id: type1.id,
-          size_id: size4.id,
+          price: 5,
+          type_id: drink.id,
+          size_id: drinkSize.id,
           created_at: new Date(),
           updated_at: new Date()
         }
