@@ -8,14 +8,16 @@ module.exports = (sequelize, DataTypes) => {
       street: DataTypes.STRING,
       district: DataTypes.STRING,
       number: DataTypes.STRING,
-      observation: DataTypes.STRING
+      observation: DataTypes.STRING,
+      confirmed: DataTypes.BOOLEAN
     },
     {}
   )
   Order.associate = function (models) {
     // associations can be defined here
     Order.hasMany(models.OrderItem, {
-      foreignKey: 'order_id'
+      foreignKey: 'order_id',
+      as: 'orderItems'
     })
   }
   return Order
