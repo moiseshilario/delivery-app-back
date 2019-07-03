@@ -1,4 +1,4 @@
-const { User } = require('../models')
+const { User, Order } = require('../models')
 const AlreadyExistsError = require('../errors/AlreadyExistsError')
 
 class UserService {
@@ -10,6 +10,16 @@ class UserService {
     }
 
     return User.create(data)
+  }
+
+  getOpenCart (userId) {
+    return Order.findOrCreate({
+      where: {
+        user_id: userId,
+        confirmed: false
+      },
+      defaults: { user_id: userId, confirmed: false }
+    })
   }
 }
 
