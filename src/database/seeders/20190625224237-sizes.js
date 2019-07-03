@@ -6,31 +6,31 @@ module.exports = {
       'sizes',
       [
         {
-          description: 'pequena',
+          description: 'Pequena',
           image: 'pizza-pequena.png',
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: 'media',
+          description: 'Média',
           image: 'pizza-media.png',
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: 'grande',
+          description: 'Grande',
           image: 'pizza-grande.png',
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: 'gigante',
+          description: 'Gigante',
           image: 'pizza-gigante.png',
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: 'lata 300ml',
+          description: 'Lata 300ml',
           image: 'coca-cola-lata.png',
           created_at: new Date(),
           updated_at: new Date()

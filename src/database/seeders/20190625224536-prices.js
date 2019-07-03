@@ -13,10 +13,10 @@ module.exports = {
     ]
 
     const pizzaSizes = [
-      { description: 'pequena', basePrice: 10.5 },
-      { description: 'media', basePrice: 20.9 },
-      { description: 'grande', basePrice: 30.5 },
-      { description: 'gigante', basePrice: 40.9 }
+      { description: 'Pequena', basePrice: 10.5 },
+      { description: 'Média', basePrice: 20.9 },
+      { description: 'Grande', basePrice: 30.5 },
+      { description: 'Gigante', basePrice: 40.9 }
     ]
 
     const buildPriceData = pizzaSize => {
@@ -45,7 +45,7 @@ module.exports = {
 
     const drink = await Type.findOne({ where: { name: 'Coca-Cola' } })
     const drinkSize = await Size.findOne({
-      where: { description: 'lata 300ml' }
+      where: { description: 'Lata 300ml' }
     })
 
     return queryInterface.bulkInsert(
