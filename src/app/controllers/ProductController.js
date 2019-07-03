@@ -8,7 +8,7 @@ class ProductController {
     return res.json(types)
   }
 
-  async show (req, res) {
+  async listTypes (req, res) {
     const types = await Type.findAll({
       where: { product_id: req.params.id },
       include: {
