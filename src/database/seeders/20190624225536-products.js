@@ -64,48 +64,56 @@ module.exports = {
         {
           product_id: pizza.id,
           name: 'Calabresa',
+          image: 'calabresa.png',
           created_at: new Date(),
           updated_at: new Date()
         },
         {
           product_id: pizza.id,
           name: 'Frango Frito',
+          image: 'frango-frito.png',
           created_at: new Date(),
           updated_at: new Date()
         },
         {
           product_id: pizza.id,
           name: 'Marguerita',
+          image: 'marguerita.png',
           created_at: new Date(),
           updated_at: new Date()
         },
         {
           product_id: pizza.id,
           name: 'Palmito',
+          image: 'palmito.png',
           created_at: new Date(),
           updated_at: new Date()
         },
         {
           product_id: pizza.id,
           name: 'Portuguesa',
+          image: 'portuguesa.png',
           created_at: new Date(),
           updated_at: new Date()
         },
         {
           product_id: pizza.id,
           name: 'Vegetariana',
+          image: 'vegetariana.png',
           created_at: new Date(),
           updated_at: new Date()
         },
         {
           product_id: bebida.id,
           name: 'Coca-Cola',
+          image: 'coca-cola.png',
           created_at: new Date(),
           updated_at: new Date()
         },
         {
           product_id: bebida.id,
           name: 'Fanta',
+          image: '',
           created_at: new Date(),
           updated_at: new Date()
         }

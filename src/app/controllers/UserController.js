@@ -15,7 +15,7 @@ class UserController {
 
   async listOrders (req, res) {
     const orders = await Order.findAll({
-      where: { user_id: req.params.id },
+      where: { user_id: req.params.id, confirmed: true },
       include: {
         model: OrderItem,
         as: 'orderItems'

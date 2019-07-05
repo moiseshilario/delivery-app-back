@@ -1,4 +1,4 @@
-const { Product, Type, Image } = require('../models')
+const { Product, Type } = require('../models')
 const ProductService = require('../services/ProductService')
 
 class ProductController {
@@ -11,12 +11,7 @@ class ProductController {
   async listTypes (req, res) {
     const types = await Type.findAll({
       where: { product_id: req.params.id },
-      include: {
-        model: Image,
-        as: 'images',
-        attributes: ['file', 'ratio']
-      },
-      attributes: ['id', 'name']
+      attributes: ['id', 'name', 'image']
     })
 
     return res.json(types)

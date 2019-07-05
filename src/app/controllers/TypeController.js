@@ -8,24 +8,24 @@ class TypeController {
     return res.json(types)
   }
 
-  async show (req, res) {
-    const type = await Type.findOne({
-      where: { id: req.params.id },
-      attributes: ['id', 'name']
-    })
+  async listPrices (req, res) {
+    // const type = await Type.findOne({
+    //   where: { id: req.params.id },
+    //   attributes: ['id', 'name']
+    // })
     const prices = await Price.findAll({
       where: { type_id: req.params.id },
       include: [
         {
           model: Size,
-          attributes: ['id', 'description'],
+          attributes: ['id', 'description', 'image'],
           as: 'size'
         }
       ],
       attributes: ['id', 'price']
     })
 
-    return res.json({ type, prices })
+    return res.json(prices)
   }
 
   async store (req, res) {

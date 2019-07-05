@@ -9,7 +9,8 @@ module.exports = (sequelize, DataTypes) => {
       district: DataTypes.STRING,
       number: DataTypes.STRING,
       observation: DataTypes.STRING,
-      confirmed: DataTypes.BOOLEAN
+      confirmed: DataTypes.BOOLEAN,
+      total: DataTypes.FLOAT
     },
     {}
   )

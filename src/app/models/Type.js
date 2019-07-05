@@ -3,14 +3,16 @@ module.exports = (sequelize, DataTypes) => {
     'Type',
     {
       name: DataTypes.STRING,
-      product_id: DataTypes.INTEGER
+      product_id: DataTypes.INTEGER,
+      image: DataTypes.STRING
     },
     {}
   )
   Type.associate = function (models) {
     // associations can be defined here
     Type.belongsTo(models.Product, {
-      foreignKey: 'product_id'
+      foreignKey: 'product_id',
+      as: 'product'
     })
 
     Type.belongsToMany(models.Size, {

@@ -10,10 +10,12 @@ module.exports = (sequelize, DataTypes) => {
     {}
   )
   OrderItem.associate = function (models) {
-    // associations can be defined here
-    // associations can be defined here
     OrderItem.belongsTo(models.Order, {
       foreignKey: 'order_id'
+    })
+
+    OrderItem.belongsTo(models.Price, {
+      foreignKey: 'price_id'
     })
   }
   return OrderItem

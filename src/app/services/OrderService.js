@@ -1,4 +1,12 @@
-const { Price, Order, OrderItem, sequelize } = require('../models')
+const {
+  Price,
+  Order,
+  OrderItem,
+  Type,
+  Size,
+  Product,
+  sequelize
+} = require('../models')
 
 class OrderService {
   async create (data) {
@@ -45,6 +53,58 @@ class OrderService {
 
       throw new Error('It was not possible to save order')
     }
+  }
+
+  async createItem (orderId, item) {
+    const order = await OrderItem.create({
+      order_id: orderId,
+      price_id: item.price.id,
+      price: item.price.price
+    })
+
+    const price = await Price.findOne({
+      where: { id: order.price_id },
+      include: [
+        {
+          model: Type,
+          as: 'type',
+          attributes: { exclude: ['createdAt', 'updatedAt'] },
+          include: [
+            {
+              model: Product,
+              as: 'product',
+              attributes: ['id', 'name']
+            }
+          ]
+        },
+        {
+          model: Size,
+          as: 'size',
+          attributes: { exclude: ['createdAt', 'updatedAt'] }
+        }
+      ],
+      attributes: ['id', 'price']
+    })
+
+    return {
+      id: order.id,
+      order_id: item.order_id,
+      price: price.price,
+      price_id: price.id,
+      size: price.size,
+      type: price.type
+    }
+  }
+
+  confirmOrder (orderId, data) {
+    const { address, ...rest } = data
+    const normalizedData = { ...address, ...rest, confirmed: true }
+
+    console.log('TCL: confirmOrder -> normalizedData', normalizedData)
+    return Order.update(normalizedData, {
+      where: { id: orderId },
+      returning: true
+    })
   }
 }
 

@@ -33,6 +33,9 @@ module.exports = {
       observation: {
         type: Sequelize.STRING
       },
+      total: {
+        type: Sequelize.FLOAT
+      },
       created_at: {
         allowNull: false,
         type: Sequelize.DATE
