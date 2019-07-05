@@ -106,6 +106,53 @@ class OrderService {
       returning: true
     })
   }
+
+  async getOrderItems (orderId) {
+    try {
+      const items = await OrderItem.findAll({
+        where: { order_id: orderId }
+      })
+
+      const cartItems = await Promise.all(
+        items.map(async item => {
+          const price = await Price.findOne({
+            where: { id: item.price_id },
+            include: [
+              {
+                model: Type,
+                as: 'type',
+                attributes: { exclude: ['createdAt', 'updatedAt'] },
+                include: [
+                  {
+                    model: Product,
+                    as: 'product',
+                    attributes: ['id', 'name']
+                  }
+                ]
+              },
+              {
+                model: Size,
+                as: 'size',
+                attributes: { exclude: ['createdAt', 'updatedAt'] }
+              }
+            ],
+            attributes: ['id', 'price']
+          })
+          return {
+            id: item.id,
+            order_id: item.order_id,
+            price: price.price,
+            price_id: price.id,
+            size: price.size,
+            type: price.type
+          }
+        })
+      )
+      return cartItems
+    } catch (e) {
+      throw new Error('Error retrieving items')
+    }
+  }
 }
 
 module.exports = new OrderService()

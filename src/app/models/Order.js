@@ -20,6 +20,11 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'order_id',
       as: 'orderItems'
     })
+
+    Order.belongsTo(models.User, {
+      foreignKey: 'user_id',
+      as: 'user'
+    })
   }
   return Order
 }

@@ -1,11 +1,21 @@
-const { Order, OrderItem, Price, Size, Type, Product } = require('../models')
+const { Order, OrderItem, User } = require('../models')
 const OrderService = require('../services/OrderService')
 
 class OrderController {
   async index (req, res) {
-    const orders = await Order.findAll()
+    const orders = await Order.findAll({
+      where: { confirmed: true },
+      include: { model: User, as: 'user' }
+    })
 
-    return res.json(orders)
+    const fullOrders = await Promise.all(
+      orders.map(async order => {
+        const orderItems = await OrderService.getOrderItems(order.id)
+        return { order, orderItems }
+      })
+    )
+
+    return res.json(fullOrders)
   }
 
   async store (req, res) {
@@ -51,46 +61,8 @@ class OrderController {
 
   async listOrderItems (req, res) {
     try {
-      const items = await OrderItem.findAll({
-        where: { order_id: req.params.id }
-      })
-
-      const cartItems = await Promise.all(
-        items.map(async item => {
-          const price = await Price.findOne({
-            where: { id: item.price_id },
-            include: [
-              {
-                model: Type,
-                as: 'type',
-                attributes: { exclude: ['createdAt', 'updatedAt'] },
-                include: [
-                  {
-                    model: Product,
-                    as: 'product',
-                    attributes: ['id', 'name']
-                  }
-                ]
-              },
-              {
-                model: Size,
-                as: 'size',
-                attributes: { exclude: ['createdAt', 'updatedAt'] }
-              }
-            ],
-            attributes: ['id', 'price']
-          })
-          return {
-            id: item.id,
-            order_id: item.order_id,
-            price: price.price,
-            price_id: price.id,
-            size: price.size,
-            type: price.type
-          }
-        })
-      )
-      return res.json(cartItems)
+      const orderItems = await OrderService.getOrderItems(req.params.id)
+      return res.json(orderItems)
     } catch (e) {
       return res.status(e.status || 500).json({ error: e.message })
     }
