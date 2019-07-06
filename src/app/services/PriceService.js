@@ -14,6 +14,7 @@ class PriceService {
       transaction
     })
 
+    // Sequelize bug: it returns the same object, but saves correctly on database
     const [price] = await Price.upsert(
       {
         ...(!!id && { id }),
