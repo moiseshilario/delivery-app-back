@@ -16,6 +16,14 @@ class FileController {
 
     return res.sendFile(filePath)
   }
+
+  store (req, res, err) {
+    if (err) {
+      return res.status(500).json({ error: 'Error uploading files' })
+    }
+
+    return res.json(req.files)
+  }
 }
 
 module.exports = new FileController()

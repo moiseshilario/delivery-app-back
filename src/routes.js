@@ -12,12 +12,12 @@ const ProductController = require('./app/controllers/ProductController')
 const TypeController = require('./app/controllers/TypeController')
 const PriceController = require('./app/controllers/PriceController')
 const SizeController = require('./app/controllers/SizeController')
-const ImageController = require('./app/controllers/ImageController')
 const FileController = require('./app/controllers/FileController')
 const OrderController = require('./app/controllers/OrderController')
 const MenuController = require('./app/controllers/MenuController')
 
 routes.get('/files/:file', FileController.show)
+routes.post('/files', upload.array('images'), FileController.store)
 
 routes.get('/users', UserController.index)
 routes.get('/users/:id/orders', UserController.listOrders)
@@ -26,8 +26,8 @@ routes.post('/users', UserController.store)
 
 routes.get('/products', ProductController.index)
 routes.get('/products/:id/types', ProductController.listTypes)
-routes.post('/products', upload.single('image'), ProductController.store)
-routes.put('/products/:id', upload.single('image'), ProductController.update)
+routes.post('/products', ProductController.store)
+routes.put('/products', ProductController.store)
 
 routes.get('/types', TypeController.index)
 routes.get('/types/:id/prices', TypeController.listPrices)
@@ -38,8 +38,6 @@ routes.post('/sizes', SizeController.store)
 
 routes.get('/prices', PriceController.index)
 routes.post('/prices', PriceController.store)
-
-routes.post('/images', upload.array('images', 3), ImageController.store)
 
 routes.get('/menu', MenuController.index)
 
