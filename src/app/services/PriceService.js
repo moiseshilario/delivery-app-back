@@ -1,17 +1,6 @@
 const { Price, Type, Size } = require('../models')
-const AlreadyExistsError = require('../errors/AlreadyExistsError')
 
 class PriceService {
-  async create (data) {
-    const { size_id: size, type_id: type } = data
-
-    if (await Price.findOne({ where: { size_id: size, type_id: type } })) {
-      throw new AlreadyExistsError('Price for this type and size')
-    }
-
-    return Price.create(data)
-  }
-
   async upsert (priceData, transaction) {
     const { id, type: typeData, size: sizeData, price: value } = priceData
 
