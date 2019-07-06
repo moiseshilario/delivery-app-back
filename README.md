@@ -2,6 +2,10 @@
 
 API for a food delivery app built with node.js
 
+## Connected Projects
+- Web: https://github.com/moiseshilario/delivery-app-web
+- Mobile: https://github.com/moiseshilario/delivery-app-mobile
+
 ## Setup
 
 ```bash
@@ -14,6 +18,35 @@ or
 npm i
 ```
 
+### Migrations
+
+Run the migrations to create the database, tables and columns
+
+```
+npx sequelize db:migrate
+```
+
+To **undo** the migrations:
+
+```
+npx sequelize db:migrate:undo:all
+```
+
+### Seeds
+
+Run the seeds to populate data on database
+
+```
+npx sequelize db:seed:all
+```
+
+To **undo** the seeds:
+
+```
+npx sequelize db:seed:undo:all
+```
+
+---
 ## Running
 
 ```
@@ -26,6 +59,11 @@ or
 ```
 npm run start
 ```
+---
+
+## API Routes
+
+Please import `Delivery-App-Insomnia.json` into Insomnia App to check out/use api routes/payloads
 
 ## Stack
 
@@ -33,7 +71,3 @@ npm run start
 - ORM: Sequelize
 - Authentication: jwt
 - Encrypt: bcryptjs
-
-## API Routes
-
-Please import `Delivery-App-Insomnia.json` into Insomnia App to check out/use api routes/payloads
