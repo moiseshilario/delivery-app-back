@@ -65,6 +65,10 @@ npm run start
 
 Please import `Delivery-App-Insomnia.json` into Insomnia App to check out/use api routes/payloads
 
+## Database Diagram
+
+Check out the database diagram, with its schema and its relations on https://app.quickdatabasediagrams.com/#/d/xk3MBE
+
 ## Stack
 
 - Database: Postgres
