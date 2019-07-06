@@ -16,8 +16,22 @@ module.exports = {
           updated_at: new Date()
         },
         {
-          name: 'Normal User',
+          name: 'Light Yagami',
           email: 'u@u.com',
+          password_hash: password,
+          created_at: new Date(),
+          updated_at: new Date()
+        },
+        {
+          name: 'Darth Vader',
+          email: 'u2@u2.com',
+          password_hash: password,
+          created_at: new Date(),
+          updated_at: new Date()
+        },
+        {
+          name: 'Walter White',
+          email: 'u3@u3.com',
           password_hash: password,
           created_at: new Date(),
           updated_at: new Date()
