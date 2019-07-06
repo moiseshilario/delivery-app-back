@@ -2,6 +2,31 @@
 
 API for a food delivery app built with node.js
 
+## Setup
+
+```bash
+yarn
+```
+
+or
+
+```bash
+npm i
+```
+
+## Running
+
+```
+yarn start
+```
+
+or
+
+
+```
+npm run start
+```
+
 ## Stack
 
 - Database: Postgres
