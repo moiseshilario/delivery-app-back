@@ -100,7 +100,6 @@ class OrderService {
     const { address, ...rest } = data
     const normalizedData = { ...address, ...rest, confirmed: true }
 
-    console.log('TCL: confirmOrder -> normalizedData', normalizedData)
     return Order.update(normalizedData, {
       where: { id: orderId },
       returning: true

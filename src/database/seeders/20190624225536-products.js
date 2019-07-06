@@ -113,7 +113,7 @@ module.exports = {
         {
           product_id: bebida.id,
           name: 'Fanta',
-          image: '',
+          image: 'fanta.png',
           created_at: new Date(),
           updated_at: new Date()
         }

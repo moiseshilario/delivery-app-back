@@ -47,6 +47,10 @@ module.exports = {
     const drinkSize = await Size.findOne({
       where: { description: 'Lata 300ml' }
     })
+    const drink2 = await Type.findOne({ where: { name: 'Fanta' } })
+    const drink2Size = await Size.findOne({
+      where: { description: 'Lata 300ml' }
+    })
 
     return queryInterface.bulkInsert(
       'prices',
@@ -59,6 +63,13 @@ module.exports = {
           price: 5,
           type_id: drink.id,
           size_id: drinkSize.id,
+          created_at: new Date(),
+          updated_at: new Date()
+        },
+        {
+          price: 5,
+          type_id: drink2.id,
+          size_id: drink2Size.id,
           created_at: new Date(),
           updated_at: new Date()
         }
